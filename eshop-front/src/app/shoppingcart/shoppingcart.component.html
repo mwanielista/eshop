@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="jumbotron">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">L.p</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Producent</th>
+                <th scope="col">Cena</th>
+                <th scope="col">Guziki</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let p of products; let i = index">
+                <th scope="row">{{i}}</th>
+                <td>{{p.productName}}</td>
+                <td>{{p.producent}}</td>
+                <td>{{p.price}} zł</td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteProduct(p.productID)">Usuń produkt</button></td>
+            </tr>
+            <tr *ngIf="totalPrice > 0">
+                <td>Cena: {{totalPrice}} zł</td>
+                <td></td>
+                <td></td>
+                <td><button type="button" href="/buy" routerLink="../buy" class="btn btn-success">Kup teraz koszyk</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

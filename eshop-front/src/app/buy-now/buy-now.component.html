@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="jumbotron">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">L.p</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Producent</th>
+                <th scope="col">Cena</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let p of products; let i = index">
+                <th scope="row">{{i}}</th>
+                <td>{{p.productName}}</td>
+                <td>{{p.producent}}</td>
+                <td>{{p.price}} zł</td>
+            </tr>
+            <tr>
+                <td>Cena: {{totalPrice}} zł</td>
+                <td></td>
+                <td>Koszty dostawy gratis :)</td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div class="jumbotron">
+        <h1>Podaj dane do dostawy</h1>
+        <form name="form">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Imię</label>
+                    <input type="text" class="form-control" id="inputEmail4" [(ngModel)]="form.name" name="name" placeholder="Imię">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Nazwisko</label>
+                    <input type="text" class="form-control" id="inputPassword4" name="surname" [(ngModel)]="form.surname" placeholder="Nazwisko">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Adres</label>
+                <input type="text" class="form-control" id="inputAddress" name="address" [(ngModel)]="form.address" placeholder="Adres">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">Miasto</label>
+                    <input type="text" class="form-control" name="city" [(ngModel)]="form.city" id="inputCity">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputZip">Kod pocztowy</label>
+                    <input type="text" class="form-control" name="postalcode" [(ngModel)]="form.postalcode"  id="inputZip">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputPayment">Metoda płatności</label>
+                    <select id="inputPayment" name="payment" [(ngModel)]="form.payment" class="form-control">
+                        <option selected>Wybierz...</option>
+                        <option value="Pobranie">Karta</option>
+                        <option value="BLIK">BLIK</option>
+                        <option value="Pobranie">Pobranie</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="pay()">Zapłac</button>
+            <button type="submit" class="btn btn-success" *ngIf="isPayed" (click)="onSubmit()">Zamów</button>
+        </form>
+    </div>
+</div>
+
+

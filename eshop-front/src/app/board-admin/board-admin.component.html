@@ -1,5 +1,123 @@
 <div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+    <div class="jumbotron" id="addNewProduct">
+        <h1>Dodaj nowy produkt</h1>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Nazwa</label>
+                    <input type="text" formControlName="name" class="form-control" id="inputEmail4"
+                           placeholder="Nazwa produktu">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Producent</label>
+                    <input type="text" formControlName="producent" class="form-control" id="inputPassword4"
+                           placeholder="Nazwa producenta">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPrice">Cena</label>
+                    <input type="number" formControlName="price" class="form-control" id="inputPrice"
+                           placeholder="Cena produktu">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCount">Dostępna ilosc</label>
+                    <input type="number" formControlName="avaliableCount" class="form-control" id="inputCount"
+                           placeholder="Dostępna ilosc produktu">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+        </form>
+    </div>
 </div>
+
+<div class="jumbotron" id="ordersList">
+    <h1>Lista zamówień</h1>
+    <div *ngFor="let order of allOrders; let i = index">
+        <p>
+            {{i}}. Zamówienie nr. {{order.id}} użytkownika {{order.name}} {{order.surname}}. Status: {{order.status}}
+            <button type="button" (click)="openEditBox(order.id)" class="btn btn-danger">Edytuj</button>
+        </p>
+    </div>
+</div>
+
+<div class="jumbotron" *ngIf="isSelected">
+    <form name="updateForm">
+        <h2>zamówienie: </h2>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail42">Imię</label>
+                <p type="text" class="form-control" id="inputEmail42" name="name">{{selectedOrder?.name}}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword24">Nazwisko</label>
+                <p type="text" class="form-control" id="inputPassword24" name="surname">{{selectedOrder?.surname}}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Adres</label>
+            <p type="text" class="form-control" id="inputAddress" name="address">{{selectedOrder?.address}}</p>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">Miasto</label>
+                <p type="text" id="inputCity" class="form-control" name="city">{{selectedOrder?.city}}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputZip">Kod pocztowy</label>
+                <p type="text" class="form-control" name="postalcode" id="inputZip">{{selectedOrder?.postalCode}}</p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="inputPayment">Metoda płatności</label>
+                <p type="text" class="form-control" name="inputPayment"
+                   id="inputPayment">{{selectedOrder?.paymentMethod}}</p>
+                <p type="text" class="form-control" name="inputPayment" id="1">{{selectedOrder?.price}}</p>
+                <p type="text" class="form-control" name="inputPayment" id="2">{{selectedOrder?.status}}</p>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState"><b>Zaktualizuj status</b></label>
+            <select id="inputState" [(ngModel)]="updateForm.status" name="status" class="form-control">
+                <option selected>Choose...</option>
+                <option>Nowe</option>
+                <option>Oplacone</option>
+                <option>Realizacja</option>
+                <option>Zrealizowane</option>
+                <option>Anulowane</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="updateOrder(selectedOrder!.id)">Aktualizuj</button>
+
+    </form>
+</div>
+
+<div class="jumbotron">
+    <h1>Lista Zgłoszeń awarii</h1>
+    <div *ngFor="let report of allReports; let i = index">
+        <p>
+            Zgłoszenie nr. {{i}}. Temat: {{report.topic}}
+            <button type="button" (click)="selectReport(report.id)" class="btn btn-success">Otwórz</button>
+        </p>
+    </div>
+</div>
+
+<div class="jumbotron" *ngIf="isSelectedReport">
+    <form name="emergencyForm">
+        <div class="form-group">
+            <label for="temat">Temat</label>
+            <p type="text" class="form-control" id="temat" placeholder="Temat zgłoszenia">{{selectedReport.topic}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="mess">Zgłoszenie</label>
+            <p class="form-control" id="mess" rows="4">{{selectedReport.message}}</p>
+        </div>
+
+        <div class="form-group" *ngIf="!selectedReport.isReviewed">
+            <button type="submit" (click)="reviewReport(selectedReport.id)" class="btn btn-primary">Oznacz jako przeczytane</button>
+        </div>
+    </form>
+</div>
+

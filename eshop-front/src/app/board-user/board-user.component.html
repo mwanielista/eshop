@@ -1,5 +1,72 @@
 <div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+    <header class="jumbotron">
+        <h1>Twoje zamowienia: </h1>
+        <ul class="list-group">
+            <li *ngFor="let order of orders" class="list-group-item">
+                <a (click)="openTable(order.id)">Zamowienie nr {{order?.id}} na kwotę {{order?.price}} PLN,
+                    status: {{order?.status}}</a>
+            </li>
+        </ul>
+
+    </header>
+</div>
+
+<div class="jumbotron" *ngIf="isSelected">
+    <form>
+        <h2>Twoje zamówienie: </h2>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Imię</label>
+                <p type="text" class="form-control" id="inputEmail4" name="name">{{selectedOrder.name}}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Nazwisko</label>
+                <p type="text" class="form-control" id="inputPassword4" name="surname">{{selectedOrder.surname}}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Adres</label>
+            <p type="text" class="form-control" id="inputAddress" name="address">{{selectedOrder.address}}</p>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">Miasto</label>
+                <p type="text" id="inputCity" class="form-control" name="city">{{selectedOrder.city}}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputZip">Kod pocztowy</label>
+                <p type="text" class="form-control" name="postalcode" id="inputZip">{{selectedOrder.postalCode}}</p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="inputPayment">Metoda płatności</label>
+                <p type="text" class="form-control" name="inputPayment"
+                   id="inputPayment">{{selectedOrder.paymentMethod}}</p>
+                <p type="text" class="form-control" name="inputPayment" id="inputPayment2">{{selectedOrder.price}}</p>
+                <p type="text" class="form-control" name="inputPayment" id="inputPayment3">{{selectedOrder.status}}</p>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="jumbotron">
+    <h1>Zgłoś awarię</h1>
+
+    <form name="emergencyForm">
+        <div class="form-group">
+            <label for="temat">Temat</label>
+            <input type="text" class="form-control" [(ngModel)]="emergencyForm.topic" name="topic" id="temat" placeholder="Temat zgłoszenia">
+        </div>
+
+        <div class="form-group">
+            <label for="mess">Zgłoszenie</label>
+            <textarea class="form-control" [(ngModel)]="emergencyForm.message" name="message" id="mess" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" (click)="submitError()" class="btn btn-primary">Zgłoś</button>
+        </div>
+    </form>
 </div>
