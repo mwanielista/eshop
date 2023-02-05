@@ -58,11 +58,9 @@ public class ProductsController {
     @PostMapping("/buy/{productID}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public void decreaseProductCount(@PathVariable Integer productID){
-        System.out.println(productID);
         Product product = productRepository.findById(Long.valueOf(productID)).get();
         if(product.getAvailableCount()> 0){
             product.setAvailableCount(product.getAvailableCount()-1);
-            System.out.println("nowy stan: " + product.getAvailableCount());
         }
         productRepository.save(product);
     }
