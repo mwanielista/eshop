@@ -43,7 +43,6 @@ export class BuyNowComponent implements OnInit {
                         data => {
                             this.products?.push(new ProductResponse(data.id, data.name, data.producent, data.price, data.availableCount));
                             this.totalPrice += data.price;
-                            console.log(this.totalPrice);
                         }
                     );
                 }
@@ -60,7 +59,6 @@ export class BuyNowComponent implements OnInit {
 
     onSubmit = () => {
         const {name, surname, address, city, postalcode, payment} = this.form;
-        console.log(this.productIds);
         const order: Order = new Order(
             this.currentUser.id,
             name,
@@ -78,7 +76,7 @@ export class BuyNowComponent implements OnInit {
                 alert('Zamowienie złożone! ');
                 this.productService.deleteCart(this.cartID).subscribe(
                     // tslint:disable-next-line:no-shadowed-variable
-                    success => console.log('usunieto koszyk'),
+                    success => {},
                     // tslint:disable-next-line:no-shadowed-variable
                     error => console.error(error)
                 );

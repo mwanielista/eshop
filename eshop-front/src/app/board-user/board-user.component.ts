@@ -45,7 +45,6 @@ export class BoardUserComponent implements OnInit {
                             data.price,
                             data.status));
                 }
-                console.log(this.orders);
             }, err => {
                 console.error(err);
             }
@@ -56,7 +55,6 @@ export class BoardUserComponent implements OnInit {
         this.isSelected = true;
         this.productService.getOrder(orderID).subscribe(
             data => {
-                console.log(data);
                 this.selectedOrder = new OrderDB(
                     // @ts-ignore
                     data.id,
@@ -88,9 +86,10 @@ export class BoardUserComponent implements OnInit {
 
     submitError = () => {
         const {topic, message} = this.emergencyForm;
-        console.log(topic, message)
         this.productService.createReport(new Report(topic, message)).subscribe(
-            success => console.log(success)
+            success => {
+                alert('Zgłoszono awarię!');
+            }
         );
 
     }

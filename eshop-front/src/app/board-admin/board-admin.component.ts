@@ -100,10 +100,6 @@ export class BoardAdminComponent implements OnInit {
                 success => {
                     alert('Produkt dodany pomyślnie');
                     this.form.reset();
-                },
-                error => {
-                    console.log('ERROR');
-                    console.log(error);
                 }
             );
     };
@@ -113,7 +109,6 @@ export class BoardAdminComponent implements OnInit {
 
         this.productService.getOrder(orderID).subscribe(
             data => {
-                console.log(data);
                 this.selectedOrder = new OrderDB(
                     // @ts-ignore
                     data.id,
@@ -157,9 +152,7 @@ export class BoardAdminComponent implements OnInit {
         this.isSelectedReport = true;
         this.productService.getReport(reportID).subscribe(
             success => {
-                console.log(success);
                 this.selectedReport = new ReportDB(success.id, success.topic, success.message, success.reviewed);
-                console.log(this.selectedReport);
             },
             error => console.error(error)
         );

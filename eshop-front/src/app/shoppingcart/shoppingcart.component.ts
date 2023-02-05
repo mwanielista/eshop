@@ -28,7 +28,6 @@ export class ShoppingcartComponent implements OnInit {
                         data => {
                             this.products?.push(new ProductResponse(data.id, data.name, data.producent, data.price, data.availableCount));
                             this.totalPrice += data.price;
-                            console.log(this.totalPrice);
                         }
                     );
                 }
