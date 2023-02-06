@@ -17,34 +17,34 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Imię</label>
-                <p type="text" class="form-control" id="inputEmail4" name="name">{{selectedOrder.name}}</p>
+                <p type="text" class="form-control" id="inputEmail4" name="name">{{selectedOrder?.name}}</p>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Nazwisko</label>
-                <p type="text" class="form-control" id="inputPassword4" name="surname">{{selectedOrder.surname}}</p>
+                <p type="text" class="form-control" id="inputPassword4" name="surname">{{selectedOrder?.surname}}</p>
             </div>
         </div>
         <div class="form-group">
             <label for="inputAddress">Adres</label>
-            <p type="text" class="form-control" id="inputAddress" name="address">{{selectedOrder.address}}</p>
+            <p type="text" class="form-control" id="inputAddress" name="address">{{selectedOrder?.address}}</p>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputCity">Miasto</label>
-                <p type="text" id="inputCity" class="form-control" name="city">{{selectedOrder.city}}</p>
+                <p type="text" id="inputCity" class="form-control" name="city">{{selectedOrder?.city}}</p>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputZip">Kod pocztowy</label>
-                <p type="text" class="form-control" name="postalcode" id="inputZip">{{selectedOrder.postalCode}}</p>
+                <p type="text" class="form-control" name="postalcode" id="inputZip">{{selectedOrder?.postalCode}}</p>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="inputPayment">Metoda płatności</label>
                 <p type="text" class="form-control" name="inputPayment"
-                   id="inputPayment">{{selectedOrder.paymentMethod}}</p>
-                <p type="text" class="form-control" name="inputPayment" id="inputPayment2">{{selectedOrder.price}}</p>
-                <p type="text" class="form-control" name="inputPayment" id="inputPayment3">{{selectedOrder.status}}</p>
+                   id="inputPayment">{{selectedOrder?.paymentMethod}}</p>
+                <p type="text" class="form-control" name="inputPayment" id="inputPayment2">{{selectedOrder?.price}}</p>
+                <p type="text" class="form-control" name="inputPayment" id="inputPayment3">{{selectedOrder?.status}}</p>
 
             </div>
         </div>

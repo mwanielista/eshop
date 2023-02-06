@@ -152,6 +152,7 @@ export class BoardAdminComponent implements OnInit {
         this.isSelectedReport = true;
         this.productService.getReport(reportID).subscribe(
             success => {
+                // @ts-ignore
                 this.selectedReport = new ReportDB(success.id, success.topic, success.message, success.reviewed);
             },
             error => console.error(error)

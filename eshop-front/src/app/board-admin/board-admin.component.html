@@ -98,7 +98,7 @@
     <div *ngFor="let report of allReports; let i = index">
         <p>
             Zgłoszenie nr. {{i}}. Temat: {{report.topic}}
-            <button type="button" (click)="selectReport(report.id)" class="btn btn-success">Otwórz</button>
+            <button type="button" (click)="selectReport(i)" class="btn btn-success">Otwórz</button>
         </p>
     </div>
 </div>
@@ -107,17 +107,17 @@
     <form name="emergencyForm">
         <div class="form-group">
             <label for="temat">Temat</label>
-            <p type="text" class="form-control" id="temat" placeholder="Temat zgłoszenia">{{selectedReport.topic}}</p>
+            <p type="text" class="form-control" id="temat" placeholder="Temat zgłoszenia">{{selectedReport?.topic}}</p>
         </div>
 
         <div class="form-group">
             <label for="mess">Zgłoszenie</label>
-            <p class="form-control" id="mess" rows="4">{{selectedReport.message}}</p>
+            <p class="form-control" id="mess" rows="4">{{selectedReport?.message}}</p>
         </div>
 
-        <div class="form-group" *ngIf="!selectedReport.isReviewed">
-            <button type="submit" (click)="reviewReport(selectedReport.id)" class="btn btn-primary">Oznacz jako przeczytane</button>
-        </div>
+       <!-- <div class="form-group" *ngIf="!selectedReport?.isReviewed">
+            <button type="submit" (click)="reviewReport(selectedReport?.id)" class="btn btn-primary">Oznacz jako przeczytane</button>
+        </div>-->
     </form>
 </div>
 
